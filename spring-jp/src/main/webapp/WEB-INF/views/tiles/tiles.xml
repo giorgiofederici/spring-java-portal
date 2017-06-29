@@ -1,0 +1,78 @@
+
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<!-- Base Definition -->
+	<definition name="base-definition"
+		template="/WEB-INF/views/tiles/layouts/defaultLayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/views/tiles/template/defaultHeader.jsp" />
+		<put-attribute name="navigation-main" value="/WEB-INF/views/tiles/template/defaultNavigationMain.jsp" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" />
+	</definition>
+	
+	<!-- USer Definition -->
+	<definition name="user-definition"
+		template="/WEB-INF/views/tiles/layouts/userLayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/views/tiles/template/userHeader.jsp" />
+		<put-attribute name="navigation-main" value="/WEB-INF/views/tiles/template/userNavigationMain.jsp" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" />
+	</definition>
+
+	<!-- Index -->
+	<definition name="index" extends="base-definition">
+		<put-attribute name="title" value="Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/index.jsp" />
+	</definition>
+	
+	<!-- Technologies -->
+	<definition name="technologies" extends="base-definition">
+		<put-attribute name="title" value="Techs - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/technologies.jsp" />
+	</definition>
+	
+	<!-- Sign Up  -->
+	<definition name="signup" extends="base-definition">
+		<put-attribute name="title" value="Sign Up - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/signup/signup.jsp" />
+	</definition>
+	
+	<!-- Sign Up Success -->
+	<definition name="signup-success" extends="base-definition">
+		<put-attribute name="title" value="Sign Up - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/signup/signup-success.jsp" />
+	</definition>
+	
+	<!-- Sign In  -->
+	<definition name="signin" extends="base-definition">
+		<put-attribute name="title" value="Sign In - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/signin.jsp" />
+	</definition>
+	
+	
+	<!-- USER SECTION -->
+	
+	<!-- User Index -->
+	<definition name="user/index" extends="user-definition">
+		<put-attribute name="title" value="User Index - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/user/user-index.jsp" />
+	</definition>
+	
+	
+	<!-- Error Page -->
+	<definition name="error" extends="base-definition">
+		<put-attribute name="title" value="Error - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/errors/error.jsp" />
+	</definition>
+	
+	<!-- Access Denied -->
+	<definition name="access-denied" extends="base-definition">
+		<put-attribute name="title" value="Access Denied - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/errors/access-denied.jsp" />
+	</definition>
+
+</tiles-definitions> 

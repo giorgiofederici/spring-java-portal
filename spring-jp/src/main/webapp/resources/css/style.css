@@ -1,0 +1,47 @@
+/* Spring Java Portal main CSS style */
+
+body {
+  	background: url("../images/pink_dust.png");
+	font-family: 'Athiti', sans-serif;
+	color: #FFFFFF;
+}
+
+.sjp-container {
+	margin-top: 20px;	
+}
+
+hr {
+	border-top-color: #de1839;
+}
+
+h1 {
+	color: #FFFFFF;	
+}
+
+a {
+	color: #FFFFFF; 
+}
+
+a:hover, a:focus {
+	color: #de1839;
+	text-decoration: none;
+}
+
+
+/* Button as a Link -> Used for Spring Logout POST */
+.inline {
+  display: inline;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #FFFFFF;
+  font-family: 'Athiti', sans-serif;
+}
+.link-button:focus, .link-button:hover {
+  	color: #de1839;
+	text-decoration: none;
+	outline: none;
+}
