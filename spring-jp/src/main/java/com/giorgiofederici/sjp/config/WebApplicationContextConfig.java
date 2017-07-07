@@ -1,5 +1,6 @@
 package com.giorgiofederici.sjp.config;
 
+import java.util.List;
 import java.util.Locale;
 
 import org.springframework.context.MessageSource;
@@ -7,8 +8,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -49,8 +52,9 @@ public class WebApplicationContextConfig extends WebMvcConfigurerAdapter {
 	 */
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
-		TilesViewResolver viewResolver = new TilesViewResolver();
-		registry.viewResolver(viewResolver);
+		registry.enableContentNegotiation();
+		TilesViewResolver tilesViewResolver = new TilesViewResolver();
+		registry.viewResolver(tilesViewResolver);
 	}
 
 	@Bean
@@ -97,5 +101,12 @@ public class WebApplicationContextConfig extends WebMvcConfigurerAdapter {
 	}
 
 	// Section added to manage localization for validation messages - END
+
+	@Override
+	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+		// TODO Auto-generated method stub
+		super.addArgumentResolvers(argumentResolvers);
+		argumentResolvers.add(new PageableHandlerMethodArgumentResolver());
+	}
 
 }

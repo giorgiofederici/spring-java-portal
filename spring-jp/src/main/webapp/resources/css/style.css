@@ -1,13 +1,88 @@
 /* Spring Java Portal main CSS style */
 
-body {
-  	background: url("../images/pink_dust.png");
-	font-family: 'Athiti', sans-serif;
+/* Font-Awesome Icons */
+
+.fa {
+	margin-right: 5px;
+}
+
+.fa-success {
+	color: #5EBA7D;
+}
+
+.fa-fail {
+	color: #FF0000;
+}
+
+/* Bootstrap */
+
+.dropdown-menu {
+	background-color: #43464B;
+	border: 1px solid #de1839;
+}
+
+.dropdown-item {
 	color: #FFFFFF;
 }
 
-.sjp-container {
-	margin-top: 20px;	
+.dropdown-item:hover, .dropdown-item:focus {
+	background-color: #43464B;
+	color: #5CB85C;
+}
+
+.table-bordered {
+	border: 1px solid #de1839;
+}
+
+.table-bordered thead tr th{
+	border-left: none;
+	border-right: 1px solid #de1839;
+	border-top: none;
+	border-bottom: none;
+	background-color: #de1839;
+}
+
+.table-bordered tbody tr td{
+	border: 1px solid #de1839;
+}
+
+.page-link {
+	background-color: #de1839;
+	color: #FFFFFF;
+	border: 1px solid #FFFFFF;
+}
+
+.page-link:hover, .page-link:focus {
+	background-color: rgba(222, 24, 57, 0.6);
+	color: #FFFFFF;
+}
+
+.page-item.active .page-link {
+	background-color: rgba(222, 24, 57, 0.6);
+	border: 1px solid #FFFFFF;
+}
+
+.page-item.disabled .page-link {
+	color: #333333;
+}
+
+.page-item.disabled .page-link:focus {
+	outline: none;
+}
+
+.page-item.active .page-link:focus {
+	border: 1px solid #FFFFFF;
+	outline: none;
+}
+
+/* Spring Java Portal */
+
+/* General */
+
+body {
+  	background: url("../images/tactile_noise_@2X.png");
+	font-family: 'Raleway', sans-serif;
+	color: #FFFFFF;
 }
 
 hr {
@@ -15,16 +90,103 @@ hr {
 }
 
 h1 {
-	color: #FFFFFF;	
+	color: #FFFFFF;
 }
 
 a {
-	color: #FFFFFF; 
+	color: #FFFFFF;
 }
 
 a:hover, a:focus {
 	color: #de1839;
 	text-decoration: none;
+}
+
+/* Main */
+
+.sjp-container {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	background-color: #333333;
+	border-radius: 5px;
+	border: 1px solid #de1839;
+	opacity: 0.9;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.default-header {
+	
+}
+
+.default-navbar .dropdown-toggle::after {
+	content: none;
+}
+
+.default-navbar .dropdown-menu {
+	left: -100px;
+}
+
+.navigation-main {
+	background-color: #de1839;
+	margin: 10px 0;
+}
+
+.navigation-main a {
+	color: #FFFFFF;
+}
+
+.navigation-main a:hover, .navigation-main a:focus {
+	color: #333333;
+	text-decoration: none;
+}
+
+.sjp-index-section {
+	margin: 20px 0;
+}
+
+.sjp-table-no-borders {
+	width: 100%;
+}
+
+.sjp-table-no-borders thead th, .sjp-table-no-borders td{
+	text-align: center;
+	border: none;
+}
+
+
+
+/* Admin Pages */
+
+/* Social Twitter */
+
+
+.twitter-text-color {
+	color: #27A5F3;
+}
+
+.twitter-profile-img {
+	margin-right: 10px;
+	border-radius: 5px;
+	border: 1px solid #27A5F3;
+}
+
+.twitter-profile-table thead th, .twitter-profile-table td {
+	text-align: center;
+	border: none;
+}
+
+.twitter-search-container {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+#tweets thead th{
+	border:none
+}
+
+.twitter-search-jfreechart {
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 
@@ -38,10 +200,16 @@ a:hover, a:focus {
   border: none;
   cursor: pointer;
   color: #FFFFFF;
-  font-family: 'Athiti', sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 .link-button:focus, .link-button:hover {
   	color: #de1839;
 	text-decoration: none;
 	outline: none;
+}
+
+/* DataTables */
+
+.action {
+	margin-right: 10px;
 }

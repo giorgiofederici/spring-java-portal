@@ -13,12 +13,22 @@
 		<put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" />
 	</definition>
 	
-	<!-- USer Definition -->
+	<!-- User Definition -->
 	<definition name="user-definition"
 		template="/WEB-INF/views/tiles/layouts/userLayout.jsp">
 		<put-attribute name="title" value="" />
-		<put-attribute name="header" value="/WEB-INF/views/tiles/template/userHeader.jsp" />
+		<put-attribute name="header" value="/WEB-INF/views/tiles/template/defaultHeader.jsp" />
 		<put-attribute name="navigation-main" value="/WEB-INF/views/tiles/template/userNavigationMain.jsp" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" />
+	</definition>
+	
+	<!-- Admin Definition -->
+	<definition name="admin-definition"
+		template="/WEB-INF/views/tiles/layouts/adminLayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header" value="/WEB-INF/views/tiles/template/defaultHeader.jsp" />
+		<put-attribute name="navigation-main" value="/WEB-INF/views/tiles/template/adminNavigationMain.jsp" />
 		<put-attribute name="content" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" />
 	</definition>
@@ -32,7 +42,19 @@
 	<!-- Technologies -->
 	<definition name="technologies" extends="base-definition">
 		<put-attribute name="title" value="Techs - Spring Java Portal" />
-		<put-attribute name="content" value="/WEB-INF/views/pages/technologies.jsp" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/technologies/technologies.jsp" />
+	</definition>
+	
+	<!-- Technologies - Java SE -->
+	<definition name="tech-java-se" extends="base-definition">
+		<put-attribute name="title" value="Java SE - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/technologies/tech-java-se.jsp" />
+	</definition>
+	
+	<!-- About -->
+	<definition name="about" extends="base-definition">
+		<put-attribute name="title" value="About Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/about.jsp" />
 	</definition>
 	
 	<!-- Sign Up  -->
@@ -62,6 +84,46 @@
 		<put-attribute name="content" value="/WEB-INF/views/pages/user/user-index.jsp" />
 	</definition>
 	
+	<!-- Twitter Connect -->
+	<definition name="user/social/twitter-connect" extends="user-definition">
+		<put-attribute name="title" value="Twitter Connect - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/user/social/twitter-connect.jsp" />
+	</definition>
+	
+	<!-- Twitter Connected -->
+	<definition name="connect/twitterConnected" extends="user-definition">
+		<put-attribute name="title" value="Twitter Connected - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/user/social/twitter-connected.jsp" />
+	</definition>
+	
+	<!-- Twitter Profile -->
+	<definition name="user/social/twitter-profile" extends="user-definition">
+		<put-attribute name="title" value="Twitter Profile - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/user/social/twitter-profile.jsp" />
+	</definition>
+	
+	
+	<!-- ADMIN SECTION -->
+	
+	<!-- Admin Index -->
+	<definition name="admin/index" extends="admin-definition">
+		<put-attribute name="title" value="Admin Index - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/admin/admin-index.jsp" />
+	</definition>
+	
+	<!-- Admin Users Management -->
+	<definition name="admin/users-management" extends="admin-definition">
+		<put-attribute name="title" value="Users Management - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/admin/admin-users-management.jsp" />
+	</definition>
+	<!-- Admin Users Management Edit -->
+	<definition name="admin/users-management/edit" extends="admin-definition">
+		<put-attribute name="title" value="Edit User - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/admin/admin-users-management-edit.jsp" />
+	</definition>
+	
+	
+	<!--  ERRORS SECION -->
 	
 	<!-- Error Page -->
 	<definition name="error" extends="base-definition">

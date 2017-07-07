@@ -23,4 +23,9 @@ public class TechnologiesController {
 		return "techs-hibernate";
 	}
 
+	@RequestMapping(value = "/java-se", method = RequestMethod.GET)
+	public String getTechJavaSE() {
+		return "tech-java-se";
+	}
+
 }

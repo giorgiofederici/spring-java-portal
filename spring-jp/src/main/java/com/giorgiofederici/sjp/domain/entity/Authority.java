@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "authorities", catalog = "sjp", uniqueConstraints = {
 		@UniqueConstraint(columnNames = { "username", "authority" }) })
@@ -50,6 +52,7 @@ public class Authority implements Serializable {
 		this.id = id;
 	}
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "username", unique = true, nullable = false)
 	public User getUser() {

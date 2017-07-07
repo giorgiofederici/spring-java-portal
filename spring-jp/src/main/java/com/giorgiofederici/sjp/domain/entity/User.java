@@ -10,9 +10,11 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "users", catalog = "sjp")
+@XmlRootElement
 public class User implements Serializable {
 
 	private static final long serialVersionUID = -3297129242495403216L;
@@ -26,6 +28,12 @@ public class User implements Serializable {
 
 	public User() {
 
+	}
+
+	public User(String username, String email, boolean enabled) {
+		this.username = username;
+		this.email = email;
+		this.enabled = enabled;
 	}
 
 	public User(String username, String email, String password, boolean enabled) {
@@ -88,6 +96,11 @@ public class User implements Serializable {
 
 	public void setAuthorities(Set<Authority> authorities) {
 		this.authorities = authorities;
+	}
+
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", email=" + email + ", enabled=" + enabled + "]";
 	}
 
 }

@@ -21,8 +21,8 @@
 	<meta name="date.created" content="14-06-2017">
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Athiti" >
-    <link rel="stylesheet" href="/spring-jp/resources/css/style.css?version=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,400">
+    <link rel="stylesheet" href="/spring-jp/resources/css/style.css?version=1.1">
     
     <script src="https://use.fontawesome.com/cb4ee38d2b.js"></script>
     
@@ -32,17 +32,15 @@
 		
 		<div class="container sjp-container">
 	
-			<header id="header" class="row">
+			<header id="header" class="row default-header">
 	            <tiles:insertAttribute name="header" />
 	        </header>
 	        
-	        <hr>
 	        
-	         <section id="navigation-main" class="row">
+	         <section class="row navigation-main">
 	        	<tiles:insertAttribute name="navigation-main" />	
 	        </section>     
 	        
-	        <hr>
 	        
 			<tiles:insertAttribute name="content" />
 	        
@@ -56,6 +54,10 @@
 		
 	</div>	
 	
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
 </body>
 </html>

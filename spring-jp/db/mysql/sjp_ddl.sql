@@ -116,6 +116,29 @@ CREATE TABLE IF NOT EXISTS `sjp`.`persistent_logins` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `sjp`.`user_connections`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `sjp`.`user_connections` ;
+
+CREATE TABLE IF NOT EXISTS `sjp`.`user_connections` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `user_id` VARCHAR(255) NOT NULL,
+  `provider_id` VARCHAR(255) NOT NULL,
+  `provider_user_id` VARCHAR(255) NULL,
+  `rank` INT NOT NULL,
+  `display_name` VARCHAR(255) NULL,
+  `profile_url` VARCHAR(512) NULL,
+  `img_url` VARCHAR(512) NULL,
+  `access_token` VARCHAR(512) NOT NULL,
+  `secret` VARCHAR(512) NULL,
+  `refresh_token` VARCHAR(512) NULL,
+  `expire_time` BIGINT NULL,
+  UNIQUE INDEX `user_connection_run` (`user_id` ASC, `provider_id` ASC, `provider_user_id` ASC),
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

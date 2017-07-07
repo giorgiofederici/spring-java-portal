@@ -1,5 +1,10 @@
 package com.giorgiofederici.sjp.config;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration;
+
+import org.jfree.chart.servlet.DisplayChart;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class DispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -27,6 +32,16 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
 	@Override
 	protected String[] getServletMappings() {
 		return new String[] { "/" };
+	}
+
+	@Override
+	public void onStartup(ServletContext servletContext) throws ServletException {
+		super.onStartup(servletContext);
+
+		// Without this Servlet, all jfree charts will get 404 error
+		ServletRegistration.Dynamic jfreeChartServlet = servletContext.addServlet("jfreeChart", new DisplayChart());
+		jfreeChartServlet.setLoadOnStartup(2);
+		jfreeChartServlet.addMapping("/jfree-chart/*");
 	}
 
 }

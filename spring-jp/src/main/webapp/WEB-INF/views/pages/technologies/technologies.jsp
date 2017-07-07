@@ -13,6 +13,9 @@
 			<div class="col-12">
 				<ul>
 					<li>
+						<a href="<spring:url value="/technologies/java-se" />" ><spring:message code="sjp.techs.javaSE" /></a>
+					</li>
+					<li>
 						<a href="<spring:url value="/technologies/database" />" ><spring:message code="sjp.techs.db" /></a>
 					</li>
 					<li>

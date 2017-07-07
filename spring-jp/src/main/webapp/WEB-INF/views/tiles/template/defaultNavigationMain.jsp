@@ -9,9 +9,11 @@
 			<li class="nav-item">
 	        	<a class="nav-link" href="<spring:url value="/index" />" ><spring:message code="default.nav.main.home" /></a>
 	      	</li>
+	      	<!-- 
 	      	<li class="nav-item">
 	        	<a class="nav-link" href="<spring:url value="/technologies" />" ><spring:message code="default.nav.main.technologies" /></a>
 	      	</li>
+	      	 -->
 	      	<li class="nav-item">
 	        	<a class="nav-link" href="<spring:url value="/about" />" ><spring:message code="default.nav.main.about" /></a>
 	      	</li>

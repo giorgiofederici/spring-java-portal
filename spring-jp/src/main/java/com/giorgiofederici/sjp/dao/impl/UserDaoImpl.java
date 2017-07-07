@@ -1,12 +1,17 @@
 package com.giorgiofederici.sjp.dao.impl;
 
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -23,6 +28,12 @@ import com.giorgiofederici.sjp.exception.AuthoritiesNotFoundException;
 @Repository
 @Transactional
 public class UserDaoImpl implements UserDao {
+
+	private final static Logger LOGGER = Logger.getLogger(UserDaoImpl.class);
+
+	private final static int USERNAME_COLUMN_INDEX = 0;
+	private final static int EMAIL_COLUMN_INDEX = 1;
+	private final static int ENABLED_COLUMN_INDEX = 2;
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -58,16 +69,113 @@ public class UserDaoImpl implements UserDao {
 		return session.createQuery(criteria).uniqueResult();
 	}
 
+	// @Override
+	// public User getEnabledUser(String username) {
+	// Session session = this.sessionFactory.getCurrentSession();
+	// CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+	// CriteriaQuery<User> criteria = criteriaBuilder.createQuery(User.class);
+	// Root<User> root = criteria.from(User.class);
+	// Predicate predicateUserUsername =
+	// criteriaBuilder.equal(root.get(User_.username), username);
+	// Predicate predicateUserEnabled =
+	// criteriaBuilder.equal(root.get(User_.enabled), true);
+	// criteria.where(criteriaBuilder.and(predicateUserUsername,
+	// predicateUserEnabled));
+	// return session.createQuery(criteria).uniqueResult();
+	// }
+
 	@Override
-	public User getEnabledUser(String username) {
+	public List<User> findAll() {
 		Session session = this.sessionFactory.getCurrentSession();
 		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
 		CriteriaQuery<User> criteria = criteriaBuilder.createQuery(User.class);
 		Root<User> root = criteria.from(User.class);
+		criteria.select(root);
+		return session.createQuery(criteria).list();
+	}
+
+	@Override
+	public List<User> findAll(int start, int length, int orderColumn, String orderDir, String searchValue) {
+		Session session = this.sessionFactory.getCurrentSession();
+
+		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+
+		CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
+		Root<User> root = criteriaQuery.from(User.class);
+		CriteriaQuery<User> select = criteriaQuery.multiselect(root.<User>get("username"), root.<User>get("email"),
+				root.<User>get("enabled"));
+
+		// Order criteria
+		if (orderColumn == USERNAME_COLUMN_INDEX) {
+			if (orderDir.equalsIgnoreCase("asc")) {
+				select.orderBy(criteriaBuilder.asc(root.get(User_.username)));
+			} else if (orderDir.equalsIgnoreCase("desc")) {
+				select.orderBy(criteriaBuilder.desc(root.get(User_.username)));
+			}
+		} else if (orderColumn == EMAIL_COLUMN_INDEX) {
+			if (orderDir.equalsIgnoreCase("asc")) {
+				select.orderBy(criteriaBuilder.asc(root.get(User_.email)));
+			} else if (orderDir.equalsIgnoreCase("desc")) {
+				select.orderBy(criteriaBuilder.desc(root.get(User_.email)));
+			}
+		} else if (orderColumn == ENABLED_COLUMN_INDEX) {
+			if (orderDir.equalsIgnoreCase("asc")) {
+				select.orderBy(criteriaBuilder.asc(root.get(User_.enabled)));
+			} else if (orderDir.equalsIgnoreCase("desc")) {
+				select.orderBy(criteriaBuilder.desc(root.get(User_.enabled)));
+			}
+		}
+
+		// Search criteria
+		if (searchValue != null && !searchValue.trim().isEmpty()) {
+			Predicate predicateUserUsername = criteriaBuilder.equal(root.get(User_.username), searchValue);
+			Predicate predicateUserEmail = criteriaBuilder.equal(root.get(User_.email), searchValue);
+			select.where(criteriaBuilder.or(predicateUserUsername, predicateUserEmail));
+		}
+
+		TypedQuery<User> typedQuery = session.createQuery(select);
+
+		typedQuery.setFirstResult(start);
+		typedQuery.setMaxResults(length);
+
+		return typedQuery.getResultList();
+
+	}
+
+	@Override
+	public int getTotalUsersNumber() {
+		Session session = this.sessionFactory.getCurrentSession();
+		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+		CriteriaQuery<Long> countQuery = criteriaBuilder.createQuery(Long.class);
+		countQuery.select(criteriaBuilder.count(countQuery.from(User.class)));
+		Long count = session.createQuery(countQuery).getSingleResult();
+
+		return count.intValue();
+	}
+
+	@Override
+	public void updateUser(User user) {
+		Session session = this.sessionFactory.getCurrentSession();
+		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+		CriteriaUpdate<User> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(User.class);
+		Root<User> root = criteriaUpdate.from(User.class);
+		Predicate predicateUserUsername = criteriaBuilder.equal(root.get(User_.username), user.getUsername());
+		criteriaUpdate.set(root.get(User_.email), user.getEmail());
+		criteriaUpdate.set(root.get(User_.enabled), user.isEnabled());
+		criteriaUpdate.where(predicateUserUsername);
+		session.createQuery(criteriaUpdate).executeUpdate();
+	}
+
+	@Override
+	public void deleteUser(String username) {
+		Session session = this.sessionFactory.getCurrentSession();
+		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+		CriteriaDelete<User> criteriaDelete = criteriaBuilder.createCriteriaDelete(User.class);
+		Root<User> root = criteriaDelete.from(User.class);
 		Predicate predicateUserUsername = criteriaBuilder.equal(root.get(User_.username), username);
-		Predicate predicateUserEnabled = criteriaBuilder.equal(root.get(User_.enabled), true);
-		criteria.where(criteriaBuilder.and(predicateUserUsername, predicateUserEnabled));
-		return session.createQuery(criteria).uniqueResult();
+		criteriaDelete.where(predicateUserUsername);
+		session.createQuery(criteriaDelete).executeUpdate();
+
 	}
 
 }

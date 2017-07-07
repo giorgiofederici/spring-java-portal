@@ -10,8 +10,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.social.security.SpringSocialConfigurer;
 
 import com.giorgiofederici.sjp.security.handler.SjpAuthenticationFailureHandler;
+import com.giorgiofederici.sjp.security.handler.SjpAuthenticationSuccessHandler;
 import com.giorgiofederici.sjp.service.impl.SjpUserDetailsService;
 
 @Configuration
@@ -31,17 +34,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/admin/**").hasRole("ADMIN").and().formLogin().loginPage("/signin")
 				.loginProcessingUrl("/signin").usernameParameter("username").passwordParameter("password")
 				.defaultSuccessUrl("/user/index").failureUrl("/signin?error")
-				.failureHandler(sjpAuthenticationFailureHandler).and().logout().logoutUrl("/logout")
-				.logoutSuccessUrl("/signin").and().exceptionHandling().accessDeniedPage("/access-denied");
+				.successHandler(authenticationSuccessHandler()).failureHandler(sjpAuthenticationFailureHandler).and()
+				.logout().logoutUrl("/logout").logoutSuccessUrl("/signin").and().exceptionHandling()
+				.accessDeniedPage("/access-denied").and().apply(new SpringSocialConfigurer());
 	}
 
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(this.sjpUserDetailsService);
+		auth.userDetailsService(this.sjpUserDetailsService).passwordEncoder(passwordEncoder());
+
 	}
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
+	}
+
+	@Bean
+	public AuthenticationSuccessHandler authenticationSuccessHandler() {
+		AuthenticationSuccessHandler authenticationSuccessHandler = new SjpAuthenticationSuccessHandler();
+		return authenticationSuccessHandler;
 	}
 
 }
