@@ -9,11 +9,16 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.giorgiofederici.sjp.showcases.ocs.domain.entity.OcsCustomerAccount;
+
 @Entity
-@Table(name = "users", catalog = "sjp")
+@Table(name = "sjp_users", catalog = "sjp")
 @XmlRootElement
 public class User implements Serializable {
 
@@ -23,6 +28,10 @@ public class User implements Serializable {
 	private String email;
 	private String password;
 	private boolean enabled;
+
+	private UserProfileImage userProfileImage;
+
+	private OcsCustomerAccount customerAccount;
 
 	private Set<Authority> authorities = new HashSet<Authority>(0);
 
@@ -96,6 +105,27 @@ public class User implements Serializable {
 
 	public void setAuthorities(Set<Authority> authorities) {
 		this.authorities = authorities;
+	}
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@PrimaryKeyJoinColumn(name = "username")
+	public OcsCustomerAccount getCustomerAccount() {
+		return this.customerAccount;
+	}
+
+	public void setCustomerAccount(OcsCustomerAccount customerAccount) {
+		this.customerAccount = customerAccount;
+	}
+
+	@OneToOne
+	@PrimaryKeyJoinColumn(name = "username")
+	@JsonIgnore
+	public UserProfileImage getUserProfileImage() {
+		return userProfileImage;
+	}
+
+	public void setUserProfileImage(UserProfileImage userProfileImage) {
+		this.userProfileImage = userProfileImage;
 	}
 
 	@Override

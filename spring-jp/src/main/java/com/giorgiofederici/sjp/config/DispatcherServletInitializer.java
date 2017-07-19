@@ -1,5 +1,6 @@
 package com.giorgiofederici.sjp.config;
 
+import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
@@ -43,5 +44,24 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
 		jfreeChartServlet.setLoadOnStartup(2);
 		jfreeChartServlet.addMapping("/jfree-chart/*");
 	}
+
+	@Override
+	protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+		registration.setMultipartConfig(getMultipartConfigElement());
+	}
+
+	private MultipartConfigElement getMultipartConfigElement() {
+		return new MultipartConfigElement(LOCATION, MAX_FILE_SIZE, MAX_REQUEST_SIZE, FILE_SIZE_THRESHOLD);
+	}
+
+	/* Set these variables for your project needs */
+
+	private static final String LOCATION = "";
+
+	private static final long MAX_FILE_SIZE = 1024 * 1024 * 25;// 25MB
+
+	private static final long MAX_REQUEST_SIZE = 1024 * 1024 * 30;// 30MB
+
+	private static final int FILE_SIZE_THRESHOLD = 0;
 
 }

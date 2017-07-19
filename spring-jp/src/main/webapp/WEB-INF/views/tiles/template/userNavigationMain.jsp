@@ -9,6 +9,9 @@
 			<li class="nav-item">
 	        	<a class="nav-link" href="<spring:url value="/index" />" ><spring:message code="default.nav.main.home" /></a>
 	      	</li>
+	      	<li class="nav-item">
+	        	<a class="nav-link" href="<spring:url value="/user/ocs" />" ><spring:message code="sjp.user.nav.main.ocs" /></a>
+	      	</li>
 	      	<li class="nav-item dropdown">
 		        <a class="nav-link dropdown-toggle" href="#" id="navbarUserSocialServicesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		        	<i class="fa fa-long-arrow-down" aria-hidden="true"></i><spring:message code="sjp.user.nav.main.social" />

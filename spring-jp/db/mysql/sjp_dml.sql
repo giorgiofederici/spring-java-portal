@@ -1,3 +1,7 @@
+INSERT INTO `sjp`.`authorities` (`username`, `authority`) VALUES ('admin', 'ROLE_USER');
+INSERT INTO `sjp`.`authorities` (`username`, `authority`) VALUES ('admin', 'ROLE_ADMIN');
+UPDATE `sjp`.`users` SET `enabled`=1 WHERE  `username`='admin';
+
 INSERT INTO `sjp`.`users` (`username`, `email`, `password`, `enabled`) VALUES ('usertest1', 'usertest1@gmail.com', 'usertest1', 0);
 INSERT INTO `sjp`.`users` (`username`, `email`, `password`, `enabled`) VALUES ('usertest2', 'usertest2@gmail.com', 'usertest2', 0);
 INSERT INTO `sjp`.`users` (`username`, `email`, `password`, `enabled`) VALUES ('usertest3', 'usertest3@gmail.com', 'usertest3', 0);

@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "groups", catalog = "sjp")
+@Table(name = "sjp_groups", catalog = "sjp")
 public class Group implements Serializable {
 
 	private static final long serialVersionUID = -6747636371090274659L;

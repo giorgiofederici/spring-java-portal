@@ -1,12 +1,15 @@
 package com.giorgiofederici.sjp.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
 
 import com.giorgiofederici.sjp.domain.entity.User;
+import com.giorgiofederici.sjp.domain.entity.UserProfileImage;
 import com.giorgiofederici.sjp.domain.form.SignUpForm;
 import com.giorgiofederici.sjp.domain.form.UserForm;
+import com.giorgiofederici.sjp.domain.form.UserProfileImageForm;
 
 public interface UserService {
 
@@ -30,4 +33,8 @@ public interface UserService {
 
 	@Secured("ROLE_ADMIN")
 	public void deleteUser(String username);
+
+	public void insertUserProfileImage(UserProfileImageForm userProfileImageForm) throws IOException;
+
+	public UserProfileImage getUserProfileImageByUsername(String username);
 }

@@ -38,7 +38,8 @@ public class HibernateConfig {
 	public LocalSessionFactoryBean getSessionFactory() {
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(getDataSource());
-		sessionFactory.setPackagesToScan(new String[] { "com.giorgiofederici.sjp.domain.entity" });
+		sessionFactory.setPackagesToScan(new String[] { "com.giorgiofederici.sjp.domain.entity",
+				"com.giorgiofederici.sjp.showcases.ocs.domain.entity" });
 		sessionFactory.setHibernateProperties(getHibernateProperties());
 		return sessionFactory;
 

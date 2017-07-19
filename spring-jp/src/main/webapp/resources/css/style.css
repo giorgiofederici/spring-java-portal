@@ -6,6 +6,10 @@
 	margin-right: 5px;
 }
 
+.fa-left {
+	margin-left: 5px;
+}
+
 .fa-success {
 	color: #5EBA7D;
 }
@@ -75,6 +79,25 @@
 	outline: none;
 }
 
+.card {
+	background-color: #de1839;
+}
+
+.card-footer {
+	background-color: #FFFFFF;	
+}
+
+.card-blockquote {
+	margin-left: 10px;
+}
+
+.btn-danger:focus {
+	color: #fff;
+    background-color: #c9302c;
+    border-color: #c12e2a;	
+}
+
+
 /* Spring Java Portal */
 
 /* General */
@@ -140,6 +163,14 @@ a:hover, a:focus {
 	text-decoration: none;
 }
 
+.sjp-default-nav-main-dropdown a:hover, .sjp-default-nav-main-dropdown a:focus{
+	color: #de1839;	
+}
+
+.nav-link a {
+	color: #de1839;
+}
+
 .sjp-index-section {
 	margin: 20px 0;
 }
@@ -153,9 +184,96 @@ a:hover, a:focus {
 	border: none;
 }
 
+/* OCS */
+
+#sjp-shopping-cart-activiti {
+	cursor: pointer;
+}
+
+.sjp-shopping-cart-selected-products {
+	display: none;
+}
+
+.sjp-shopping-cart-selected-products-card {
+	border-radius: calc(.25rem - 1px);
+	background-color: #de1839;
+}
+
+
+.sjp-shopping-item {
+	background-color: #de1839;
+	margin: 10px;
+	border-radius: 5px;
+	padding-left: 5px;
+	padding-top: 5px;
+}
+
+.webflow-shopping-cart-top {
+	margin-top: 10px;
+	margin-bottom: 10px;	
+}
+
+.webflow-shopping-cart-top a {
+	opacity: 1;	
+}
+
+.webflow-shopping-cart-top a:focus, .webflow-shopping-cart-top a:hover {
+	color: #FFFFFF;
+	opacity: 0.8;
+}
+
+.sjp-shopping-cart {
+	background-color: #de1839;
+	border-radius: 30px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.sjp-fa-cart {
+	vertical-align: middle;
+}
+
+/* .sjp-shopping-item-add { */
+/* 	padding-left: 0; */
+/* } */
+
+
+.sjp-shopping-item-add .link-button {
+	color: #de1839;
+}
+
+
+/* .sjp-shopping-item-add .link-button:focus, .sjp-shopping-item-add .link-button:hover { */
+/*   	color: #333333; */
+/* } */
+
+.sjp-shopping-item-image {
+	margin-bottom: 10px;
+}
+
+.sjp-shopping-cart-remo-link-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #FFFFFF;
+  font-family: 'Raleway', sans-serif;
+}
+.sjp-shopping-cart-remo-link-button:focus, .sjp-shopping-cart-remo-link-button:hover {
+  	color: #FFFFFF;
+	text-decoration: none;
+	outline: none;
+}
 
 
 /* Admin Pages */
+
+/* User Pages */
+
+.user-profile-image-upload {
+	margin-top: 10px;
+}
 
 /* Social Twitter */
 

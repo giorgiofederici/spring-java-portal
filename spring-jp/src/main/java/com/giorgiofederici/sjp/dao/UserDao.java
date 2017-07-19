@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.security.access.annotation.Secured;
 
 import com.giorgiofederici.sjp.domain.entity.User;
+import com.giorgiofederici.sjp.domain.entity.UserProfileImage;
 
 public interface UserDao {
 
@@ -26,5 +27,11 @@ public interface UserDao {
 
 	@Secured("ROLE_ADMIN")
 	public void deleteUser(String username);
+
+	public void insertUserProfileImage(UserProfileImage userProfileImage);
+
+	public UserProfileImage getUserProfileImageByUsername(String username);
+
+	public void updateUserProfileImage(UserProfileImage userProfileImage);
 
 }

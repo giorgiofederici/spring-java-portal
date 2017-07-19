@@ -1,6 +1,5 @@
 package com.giorgiofederici.sjp.config;
 
-import java.util.List;
 import java.util.Locale;
 
 import org.springframework.context.MessageSource;
@@ -8,10 +7,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -21,6 +19,7 @@ import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import org.springframework.web.servlet.view.tiles3.SimpleSpringPreparerFactory;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
@@ -44,6 +43,7 @@ public class WebApplicationContextConfig extends WebMvcConfigurerAdapter {
 		TilesConfigurer tilesConfigurer = new TilesConfigurer();
 		tilesConfigurer.setDefinitions("/WEB-INF/views/tiles/tiles.xml");
 		tilesConfigurer.setCheckRefresh(true);
+		tilesConfigurer.setPreparerFactoryClass(SimpleSpringPreparerFactory.class);
 		return tilesConfigurer;
 	}
 
@@ -102,11 +102,16 @@ public class WebApplicationContextConfig extends WebMvcConfigurerAdapter {
 
 	// Section added to manage localization for validation messages - END
 
-	@Override
-	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
-		// TODO Auto-generated method stub
-		super.addArgumentResolvers(argumentResolvers);
-		argumentResolvers.add(new PageableHandlerMethodArgumentResolver());
-	}
+	// @Override
+	// public void addArgumentResolvers(List<HandlerMethodArgumentResolver>
+	// argumentResolvers) {
+	// // TODO Auto-generated method stub
+	// super.addArgumentResolvers(argumentResolvers);
+	// argumentResolvers.add(new PageableHandlerMethodArgumentResolver());
+	// }
 
+	@Bean(name = "multipartResolver")
+	public StandardServletMultipartResolver resolver() {
+		return new StandardServletMultipartResolver();
+	}
 }

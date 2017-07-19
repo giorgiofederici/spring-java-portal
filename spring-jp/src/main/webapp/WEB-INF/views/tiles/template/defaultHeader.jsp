@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form"  uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <!-- Logo and Main Title Column -->
@@ -65,17 +66,25 @@
 				      	<sec:authorize access="isAuthenticated()">
 				      		<li class="nav-item dropdown">
 						        <a class="nav-link dropdown-toggle" href="#" id="navbarUserProfileServicesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						        	<img src="http://via.placeholder.com/50x50">
+						        	<c:choose>
+										<c:when test="${empty userProfileImage} ">
+											<img src="http://via.placeholder.com/50x50">
+										</c:when>
+										<c:otherwise>
+											<img src="data:image/jpeg;base64,${userProfileImage}" width="50" height="50">
+										</c:otherwise>
+									</c:choose>
 						        </a>
 						        <div class="dropdown-menu" aria-labelledby="navbarUserProfileServicesDropdown">
 						        	<a class="nav-link" href="<spring:url value="/user/index" />" >
-						        		<i class="fa fa-user" aria-hidden="true"></i><spring:message code="sjp.user.header.nav.top.userProfile" /></a>
-							        	<form:form action="/spring-jp/logout" method="POST" cssClass="inline">
-											<button type="submit" class="link-button" title="<spring:message code="sjp.user.header.nav.top.logout" />">
-												<i class="fa fa-power-off" aria-hidden="true"></i>
-												<spring:message code="sjp.user.header.nav.top.logout" />
-											</button>
-							      		</form:form>
+						        		<i class="fa fa-user" aria-hidden="true"></i><spring:message code="sjp.user.header.nav.top.userProfile" />
+						        	</a>
+						        	<form:form action="/spring-jp/logout" method="POST" cssClass="inline">
+										<button type="submit" class="link-button" title="<spring:message code="sjp.user.header.nav.top.logout" />">
+											<i class="fa fa-power-off" aria-hidden="true"></i>
+											<spring:message code="sjp.user.header.nav.top.logout" />
+										</button>
+						      		</form:form>
 						        </div>
 						  	</li>
 			      		</sec:authorize>

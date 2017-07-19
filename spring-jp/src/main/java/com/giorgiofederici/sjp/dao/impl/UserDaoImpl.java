@@ -22,6 +22,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.giorgiofederici.sjp.dao.UserDao;
 import com.giorgiofederici.sjp.domain.entity.Authority;
 import com.giorgiofederici.sjp.domain.entity.User;
+import com.giorgiofederici.sjp.domain.entity.UserProfileImage;
+import com.giorgiofederici.sjp.domain.entity.UserProfileImage_;
 import com.giorgiofederici.sjp.domain.entity.User_;
 import com.giorgiofederici.sjp.exception.AuthoritiesNotFoundException;
 
@@ -68,21 +70,6 @@ public class UserDaoImpl implements UserDao {
 		criteria.where(criteriaBuilder.equal(root.get(User_.username), username));
 		return session.createQuery(criteria).uniqueResult();
 	}
-
-	// @Override
-	// public User getEnabledUser(String username) {
-	// Session session = this.sessionFactory.getCurrentSession();
-	// CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-	// CriteriaQuery<User> criteria = criteriaBuilder.createQuery(User.class);
-	// Root<User> root = criteria.from(User.class);
-	// Predicate predicateUserUsername =
-	// criteriaBuilder.equal(root.get(User_.username), username);
-	// Predicate predicateUserEnabled =
-	// criteriaBuilder.equal(root.get(User_.enabled), true);
-	// criteria.where(criteriaBuilder.and(predicateUserUsername,
-	// predicateUserEnabled));
-	// return session.createQuery(criteria).uniqueResult();
-	// }
 
 	@Override
 	public List<User> findAll() {
@@ -176,6 +163,38 @@ public class UserDaoImpl implements UserDao {
 		criteriaDelete.where(predicateUserUsername);
 		session.createQuery(criteriaDelete).executeUpdate();
 
+	}
+
+	@Override
+	public void insertUserProfileImage(UserProfileImage userProfileImage) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.persist(userProfileImage);
+	}
+
+	@Override
+	public UserProfileImage getUserProfileImageByUsername(String username) {
+		Session session = this.sessionFactory.getCurrentSession();
+		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+		CriteriaQuery<UserProfileImage> criteria = criteriaBuilder.createQuery(UserProfileImage.class);
+		Root<UserProfileImage> root = criteria.from(UserProfileImage.class);
+		criteria.select(root);
+		criteria.where(criteriaBuilder.equal(root.get(UserProfileImage_.username), username));
+		return session.createQuery(criteria).uniqueResult();
+	}
+
+	@Override
+	public void updateUserProfileImage(UserProfileImage userProfileImage) {
+		Session session = this.sessionFactory.getCurrentSession();
+		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+		CriteriaUpdate<UserProfileImage> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(UserProfileImage.class);
+		Root<UserProfileImage> root = criteriaUpdate.from(UserProfileImage.class);
+		Predicate predicateUserProfileImageUsername = criteriaBuilder.equal(root.get(UserProfileImage_.username),
+				userProfileImage.getUsername());
+		criteriaUpdate.set(root.get(UserProfileImage_.name), userProfileImage.getName());
+		criteriaUpdate.set(root.get(UserProfileImage_.type), userProfileImage.getType());
+		criteriaUpdate.set(root.get(UserProfileImage_.content), userProfileImage.getContent());
+		criteriaUpdate.where(predicateUserProfileImageUsername);
+		session.createQuery(criteriaUpdate).executeUpdate();
 	}
 
 }

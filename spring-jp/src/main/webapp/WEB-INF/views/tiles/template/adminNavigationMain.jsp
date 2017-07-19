@@ -9,6 +9,9 @@
 			<li class="nav-item">
 	        	<a class="nav-link" href="<spring:url value="/admin/users-management" />" ><spring:message code="sjp.admin.nav.main.usersManagement" /></a>
 	      	</li>
+	      	<li class="nav-item">
+	        	<a class="nav-link" href="<spring:url value="/admin/ocs" />" ><spring:message code="sjp.admin.nav.main.ocsManagement" /></a>
+	      	</li>
 	  	</ul>			
 	</nav>
 </div>

@@ -1,0 +1,55 @@
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                     http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+
+	<var name="order"
+		class="com.giorgiofederici.sjp.showcases.ocs.domain.entity.OcsOrder" />
+
+	<action-state id="webflow-add-cart-to-order">
+		<evaluate expression="ocsCartServiceImpl.validate(requestParameters.cartId)"
+			result="order.cart" />
+		<transition to="webflow-invalid-cart-warning"
+			on-exception="com.giorgiofederici.sjp.showcases.ocs.exception.InvalidCartException" />
+		<transition to="webflow-customer-info" />
+	</action-state>
+
+	<view-state id="webflow-customer-info" view="webflow-customer-info.jsp"
+		model="order">
+		<transition on="webflow-customer-info-collected" to="webflow-shipping-details" />
+	</view-state>
+
+	<view-state id="webflow-shipping-details" model="order">
+		<transition on="webflow-shipping-details-collected" to="webflow-order-confirmation" />
+		<transition on="webflow-back-to-customer-info" to="webflow-customer-info" />
+	</view-state>
+
+	<view-state id="webflow-order-confirmation">
+		<transition on="webflow-order-confermed" to="webflow-process-order" />
+		<transition on="webflow-back-to-shipping-details" to="webflow-shipping-details" />
+	</view-state>
+
+	<action-state id="webflow-process-order">
+		<evaluate expression="ocsOrderServiceImpl.saveOrder(order)"
+			result="order.id" />
+		<transition to="webflow-thank-customer" />
+	</action-state>
+
+	<view-state id="webflow-invalid-cart-warning">
+		<transition to="endState" />
+	</view-state>
+
+	<view-state id="webflow-thank-customer" model="order">
+		<transition to="endState" />
+	</view-state>
+
+	<end-state id="endState" />
+
+	<end-state id="cancelCheckout" view="webflow-checkout-cancelled.jsp" />
+
+	<global-transitions>
+		<transition on="cancel" to="cancelCheckout" />
+	</global-transitions>
+
+</flow>

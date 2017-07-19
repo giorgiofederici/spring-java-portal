@@ -5,32 +5,35 @@
 
 	<!-- Base Definition -->
 	<definition name="base-definition"
-		template="/WEB-INF/views/tiles/layouts/defaultLayout.jsp">
+		template="/WEB-INF/views/tiles/layouts/defaultLayout.jsp" preparer="com.giorgiofederici.sjp.view.preparer.DefaultHeaderViewPreparer">
 		<put-attribute name="title" value="" />
 		<put-attribute name="header" value="/WEB-INF/views/tiles/template/defaultHeader.jsp" />
 		<put-attribute name="navigation-main" value="/WEB-INF/views/tiles/template/defaultNavigationMain.jsp" />
 		<put-attribute name="content" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" />
+		<put-attribute name="scripts" value="" />
 	</definition>
 	
 	<!-- User Definition -->
 	<definition name="user-definition"
-		template="/WEB-INF/views/tiles/layouts/userLayout.jsp">
+		template="/WEB-INF/views/tiles/layouts/userLayout.jsp" preparer="com.giorgiofederici.sjp.view.preparer.DefaultHeaderViewPreparer">
 		<put-attribute name="title" value="" />
 		<put-attribute name="header" value="/WEB-INF/views/tiles/template/defaultHeader.jsp" />
 		<put-attribute name="navigation-main" value="/WEB-INF/views/tiles/template/userNavigationMain.jsp" />
 		<put-attribute name="content" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" />
+		<put-attribute name="scripts" value="" />
 	</definition>
 	
 	<!-- Admin Definition -->
 	<definition name="admin-definition"
-		template="/WEB-INF/views/tiles/layouts/adminLayout.jsp">
+		template="/WEB-INF/views/tiles/layouts/adminLayout.jsp" preparer="com.giorgiofederici.sjp.view.preparer.DefaultHeaderViewPreparer">
 		<put-attribute name="title" value="" />
 		<put-attribute name="header" value="/WEB-INF/views/tiles/template/defaultHeader.jsp" />
 		<put-attribute name="navigation-main" value="/WEB-INF/views/tiles/template/adminNavigationMain.jsp" />
 		<put-attribute name="content" value="" />
 		<put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" />
+		<put-attribute name="scripts" value="" />
 	</definition>
 
 	<!-- Index -->
@@ -49,6 +52,69 @@
 	<definition name="tech-java-se" extends="base-definition">
 		<put-attribute name="title" value="Java SE - Spring Java Portal" />
 		<put-attribute name="content" value="/WEB-INF/views/pages/technologies/tech-java-se.jsp" />
+	</definition>
+	
+	<!-- Showcases -->
+	<definition name="showcases" extends="base-definition">
+		<put-attribute name="title" value="Showcases - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/showcases/showcases.jsp" />
+	</definition>
+	
+	<!-- Showcase Online Cart System -->
+	<definition name="showcases/ocs" extends="base-definition">
+		<put-attribute name="title" value="Online Cart System - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/showcases/ocs/online-cart-system.jsp" />
+	</definition>
+	
+	<!-- Showcase Online Cart System Activiti Shopping -->
+	<definition name="showcases/ocs/activiti-shopping" extends="base-definition">
+		<put-attribute name="title" value="OCS Activiti Shopping - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/showcases/ocs/activiti/activiti-shopping.jsp" />
+		<put-attribute name="scripts" value="/WEB-INF/views/pages/showcases/ocs/scripts/shopping-cart-scripts.jsp" />
+	</definition>
+	
+	<!-- Showcase Online Cart System Activiti Billing -->
+	<definition name="showcases/ocs/activiti-billing" extends="base-definition">
+		<put-attribute name="title" value="OCS Activiti Billing - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/showcases/ocs/activiti/activiti-billing.jsp" />
+	</definition>
+	
+	<!-- Showcase Online Cart System Activiti Shipping -->
+	<definition name="showcases/ocs/activiti-shipping" extends="base-definition">
+		<put-attribute name="title" value="OCS Activiti Shipping - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/showcases/ocs/activiti/activiti-shipping.jsp" />
+	</definition>
+	
+	<!-- Showcase Online Cart System Activiti Payment -->
+	<definition name="showcases/ocs/activiti-payment" extends="base-definition">
+		<put-attribute name="title" value="OCS Activiti Payment - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/showcases/ocs/activit/activiti-payment.jsp" />
+	</definition>
+	
+	<!-- Showcase Online Cart System Activiti Payment -->
+	<definition name="showcases/ocs/activiti-receipt" extends="base-definition">
+		<put-attribute name="title" value="OCS Activiti Receipt - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/showcases/ocs/activiti/activiti-receipt.jsp" />
+	</definition>
+	
+	<!-- Showcase Online Cart System Web Flow Shopping -->
+	<definition name="showcases/ocs/webflow/shopping" extends="base-definition">
+		<put-attribute name="title" value="OCS Webflow Shopping - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/showcases/ocs/webflow/webflow-shopping.jsp" />
+		<put-attribute name="scripts" value="/WEB-INF/views/pages/showcases/ocs/scripts/webflow-cart-scripts.jsp" />
+	</definition>
+	
+	<!-- Showcase Online Cart System Web Flow Cart -->
+	<definition name="showcases/ocs/webflow/cart" extends="base-definition">
+		<put-attribute name="title" value="OCS Webflow Cart - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/showcases/ocs/webflow/webflow-cart.jsp" />
+		<put-attribute name="scripts" value="/WEB-INF/views/pages/showcases/ocs/scripts/webflow-cart-scripts.jsp" />
+	</definition>
+	
+	<!-- Architecture -->
+	<definition name="architecture" extends="base-definition">
+		<put-attribute name="title" value="Architecture - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/architecture.jsp" />
 	</definition>
 	
 	<!-- About -->
@@ -102,6 +168,18 @@
 		<put-attribute name="content" value="/WEB-INF/views/pages/user/social/twitter-profile.jsp" />
 	</definition>
 	
+	<!-- User OCS -->
+	<definition name="user/ocs" extends="user-definition">
+		<put-attribute name="title" value="Onlice Cart System - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/user/ocs/user-ocs.jsp" />
+	</definition>
+	
+	<!-- User OCS Customer Account -->
+	<definition name="user/ocs/customer-account" extends="user-definition">
+		<put-attribute name="title" value="OCS Customer Account - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/user/ocs/user-ocs-customer-account.jsp" />
+	</definition>
+	
 	
 	<!-- ADMIN SECTION -->
 	
@@ -115,11 +193,51 @@
 	<definition name="admin/users-management" extends="admin-definition">
 		<put-attribute name="title" value="Users Management - Spring Java Portal" />
 		<put-attribute name="content" value="/WEB-INF/views/pages/admin/admin-users-management.jsp" />
+		<put-attribute name="scripts" value="/WEB-INF/views/pages/admin/scripts/admin-users-scripts.jsp" />
 	</definition>
 	<!-- Admin Users Management Edit -->
 	<definition name="admin/users-management/edit" extends="admin-definition">
 		<put-attribute name="title" value="Edit User - Spring Java Portal" />
 		<put-attribute name="content" value="/WEB-INF/views/pages/admin/admin-users-management-edit.jsp" />
+	</definition>
+	
+	<!-- Admin OCS Management -->
+	<definition name="admin/ocs" extends="admin-definition">
+		<put-attribute name="title" value="OCS Management - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/admin/ocs/admin-ocs.jsp" />
+	</definition>
+	
+	<!-- Admin Categories Management -->
+	<definition name="admin/ocs/categories-management" extends="admin-definition">
+		<put-attribute name="title" value="OCS Categories - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/admin/ocs/admin-ocs-categories-management.jsp" />
+		<put-attribute name="scripts" value="/WEB-INF/views/pages/admin/ocs/scripts/admin-ocs-categories-scripts.jsp" />
+	</definition>
+	
+	<!-- Admin Categories Management Edit -->
+	<definition name="admin/ocs/categories-management/edit" extends="admin-definition">
+		<put-attribute name="title" value="OCS Edit Categories - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/admin/ocs/admin-ocs-categories-management-edit.jsp" />
+	</definition>
+	
+	<!-- Admin Customer Accounts Management -->
+	<definition name="admin/ocs/customer-accounts-management" extends="admin-definition">
+		<put-attribute name="title" value="OCS Customer Accounts - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/admin/ocs/admin-ocs-customer-accounts-management.jsp" />
+		<put-attribute name="scripts" value="/WEB-INF/views/pages/admin/ocs/scripts/admin-ocs-customer-accounts-scripts.jsp" />
+	</definition>
+	
+	<!-- Admin Products Management -->
+	<definition name="admin/ocs/products-management" extends="admin-definition">
+		<put-attribute name="title" value="OCS Products - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/admin/ocs/admin-ocs-products-management.jsp" />
+		<put-attribute name="scripts" value="/WEB-INF/views/pages/admin/ocs/scripts/admin-ocs-products-scripts.jsp" />
+	</definition>
+	
+	<!-- Admin Products Management Edit -->
+	<definition name="admin/ocs/products-management/edit" extends="admin-definition">
+		<put-attribute name="title" value="OCS Edit Products - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/admin/ocs/admin-ocs-products-management-edit.jsp" />
 	</definition>
 	
 	

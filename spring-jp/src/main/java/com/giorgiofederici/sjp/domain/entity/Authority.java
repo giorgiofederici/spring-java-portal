@@ -16,7 +16,7 @@ import javax.persistence.UniqueConstraint;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "authorities", catalog = "sjp", uniqueConstraints = {
+@Table(name = "sjp_authorities", catalog = "sjp", uniqueConstraints = {
 		@UniqueConstraint(columnNames = { "username", "authority" }) })
 public class Authority implements Serializable {
 

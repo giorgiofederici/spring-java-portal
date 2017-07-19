@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "group_members", catalog = "sjp")
+@Table(name = "sjp_group_members", catalog = "sjp")
 public class GroupMember implements Serializable {
 
 	private static final long serialVersionUID = 8670320145429227850L;
