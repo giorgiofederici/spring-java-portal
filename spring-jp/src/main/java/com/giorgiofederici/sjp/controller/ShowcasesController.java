@@ -17,4 +17,9 @@ public class ShowcasesController {
 	public String getOnlineCartSystem() {
 		return "showcases/ocs";
 	}
+	
+	@GetMapping(value="/data-science")
+	public String getDataScience() {
+		return "showcases/data-science";
+	}
 }

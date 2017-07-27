@@ -16,6 +16,7 @@
 		        <div class="dropdown-menu sjp-default-nav-main-dropdown" aria-labelledby="navbarShowcasesDropdown">
 		        	<a class="nav-link" href="<spring:url value="/showcases" />" ><spring:message code="default.nav.main.showcases.all" /></a>
 		        	<a class="nav-link" href="<spring:url value="/showcases/ocs" />" ><spring:message code="default.nav.main.showcases.onlineCartSystem" /></a>
+		        	<a class="nav-link" href="<spring:url value="/showcases/data-science" />" ><spring:message code="default.nav.main.showcases.dataScience" /></a>
 		        </div>
 		  	</li>
 	      	<li class="nav-item">

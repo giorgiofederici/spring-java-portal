@@ -266,6 +266,15 @@ a:hover, a:focus {
 	outline: none;
 }
 
+/* Data Science */
+
+.sjp-datascience-listfile-panel {
+	height: 300px;
+	margin-top: 10px;
+	overflow-y: scroll;
+	border: 1px solid #de1839;
+	font-weight: bold;
+}
 
 /* Admin Pages */
 

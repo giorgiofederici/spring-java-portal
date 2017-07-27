@@ -66,6 +66,12 @@
 		<put-attribute name="content" value="/WEB-INF/views/pages/showcases/ocs/online-cart-system.jsp" />
 	</definition>
 	
+	<!-- Showcase Data Science -->
+	<definition name="showcases/data-science" extends="base-definition">
+		<put-attribute name="title" value="Data Science - Spring Java Portal" />
+		<put-attribute name="content" value="/WEB-INF/views/pages/showcases/data-science.jsp" />
+	</definition>
+	
 	<!-- Showcase Online Cart System Activiti Shopping -->
 	<definition name="showcases/ocs/activiti-shopping" extends="base-definition">
 		<put-attribute name="title" value="OCS Activiti Shopping - Spring Java Portal" />
